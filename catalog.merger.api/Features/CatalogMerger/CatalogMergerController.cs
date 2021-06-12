@@ -20,7 +20,7 @@ namespace catalog.merger.api.Features.CatalogMerger
         [HttpPost]
         public async Task<IActionResult> Merge([FromBody] CatalogMergeRequest request)
         {
-            if (request.Companies.IsEmpty())
+            if (request.CompanyNames.IsEmpty())
                 return BadRequest("Comapanies list is empty.");
 
             var response = await _mediator.Send(request);

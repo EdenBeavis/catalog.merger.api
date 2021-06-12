@@ -3,9 +3,15 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.31005.135
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "catalog.merger.api", "catalog.merger.api\catalog.merger.api.csproj", "{C66FB9A9-3678-4A33-B49C-5F15E7290E54}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "catalog.merger.api", "catalog.merger.api\catalog.merger.api.csproj", "{C66FB9A9-3678-4A33-B49C-5F15E7290E54}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "catalog.merger.api.tests", "catalog.merger.api.tests\catalog.merger.api.tests.csproj", "{C49FB6DC-59C1-4F27-B771-D7968AEB50A5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "catalog.merger.api.tests", "catalog.merger.api.tests\catalog.merger.api.tests.csproj", "{C49FB6DC-59C1-4F27-B771-D7968AEB50A5}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{611C94FF-6795-430E-A8D4-D8707671D83F}"
+	ProjectSection(SolutionItems) = preProject
+		.gitignore = .gitignore
+		README.md = README.md
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

@@ -25,7 +25,7 @@ namespace catalog.merger.api.tests.Tests
             // Arrange
             var request = new CatalogMergeRequest
             {
-                Companies = new List<string>()
+                CompanyNames = new List<string>()
             };
 
             // Act
