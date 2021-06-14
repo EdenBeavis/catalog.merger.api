@@ -47,5 +47,5 @@ It seems like this would be the logical progression of this merger. It seems jus
 ### If you DON'T have Visual studio installed
 1. Open up a command console or terminal window and naviate to the root of the project.
 2. Run the "dotnet restore" command.
-3. Run the `dotnet test` command.
+3. Run the "dotnet test" command.
 4. The 6 tests should pass -> Displayed in green text.
