@@ -4,6 +4,8 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.OpenApi.Models;
+using NetCore.AutoRegisterDi;
 
 namespace catalog.merger.api
 {
@@ -19,15 +21,21 @@ namespace catalog.merger.api
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
-            SetupTestDependencies(services);
-
             services.AddMediatR(typeof(Startup));
+            services.RegisterAssemblyPublicNonGenericClasses()
+             .Where(c => c.Name.EndsWith("Proxy"))
+             .AsPublicImplementedInterfaces();
+
+            services.AddSwaggerGen(c =>
+            {
+                c.SwaggerDoc("v1", new OpenApiInfo { Title = "Catalog Merger API", Version = "v1" });
+            });
+
+            SetupTestDependencies(services);
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
-            //TODO: Add swagger
-
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
@@ -45,6 +53,13 @@ namespace catalog.merger.api
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
+            });
+
+            app.UseSwagger();
+            app.UseSwaggerUI(c =>
+            {
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "Catalog Merger API V1");
+                c.RoutePrefix = string.Empty;
             });
         }
 

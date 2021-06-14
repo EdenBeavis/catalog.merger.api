@@ -12,11 +12,11 @@
     <PackageReference Include="MediatR.Extensions.Microsoft.DependencyInjection" Version="9.0.0" />
     <PackageReference Include="NetCore.AutoRegisterDi" Version="2.1.0" />
     <PackageReference Include="NLog.Web.AspNetCore" Version="4.12.0" />
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.1.4" />
     <PackageReference Include="System.Linq.Async" Version="5.0.0" />
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="InputFiles\" />
     <Folder Include="OutputFiles\" />
   </ItemGroup>
 </Project>

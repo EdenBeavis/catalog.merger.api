@@ -2,7 +2,7 @@
 {
     public class CatalogItem
     {
-        private string SKU { get; set; }
-        private string Description { get; set; }
+        public string SKU { get; set; }
+        public string Description { get; set; }
     }
 }

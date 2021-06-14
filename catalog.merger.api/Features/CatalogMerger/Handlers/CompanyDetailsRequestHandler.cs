@@ -1,11 +1,11 @@
 ﻿using Bearded.Monads;
+using Bolt.Common.Extensions;
 using catalog.merger.api.Features.CatalogMerger.Models;
 using catalog.merger.api.Infrastructure.Proxies.Barcode;
 using catalog.merger.api.Infrastructure.Proxies.Catalog;
 using catalog.merger.api.Infrastructure.Proxies.Supplier;
 using MediatR;
 using Microsoft.Extensions.Logging;
-using System;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -37,27 +37,22 @@ namespace catalog.merger.api.Features.CatalogMerger.Handlers
 
         public async Task<Option<Company>> Handle(CompanyDetailsRequest request, CancellationToken cancellationToken)
         {
-            try
-            {
-                var barcodes = _barcodeProxy.Get(request.CompanyName);
-                var catalog = _catalogProxy.Get(request.CompanyName);
-                var suppliers = _supplierProxy.Get(request.CompanyName);
+            var barcodes = _barcodeProxy.Get(request.CompanyName, cancellationToken);
+            var catalog = _catalogProxy.Get(request.CompanyName, cancellationToken);
+            var suppliers = _supplierProxy.Get(request.CompanyName, cancellationToken);
 
-                await Task.WhenAll(barcodes, catalog, suppliers);
+            await Task.WhenAll(barcodes, catalog, suppliers);
 
-                return new Company
-                {
-                    CompanyName = request.CompanyName,
-                    Barcodes = await barcodes,
-                    Catalog = await catalog,
-                    Suppliers = await suppliers
-                };
-            }
-            catch (Exception ex)
-            {
-                _logger.LogError(ex, "Error retrieving company details");
+            if ((await barcodes).IsEmpty() || (await catalog).IsEmpty() || (await suppliers).IsEmpty())
                 return Option<Company>.None;
-            }
+
+            return new Company
+            {
+                CompanyName = request.CompanyName,
+                Barcodes = await barcodes,
+                Catalog = await catalog,
+                Suppliers = await suppliers
+            };
         }
     }
 }
