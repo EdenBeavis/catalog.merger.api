@@ -1,8 +1,8 @@
 # Catalog Merger API
 ## Design Decisions
 ### Why .net core/.net 5.0.?
-.net core is a great cross platform tool that will work on Mac, Windows and Linux.
-.net core is greate for data processing and so it seemed like a perfect fit. 
+.net core is a cross platform tool that will work on Mac, Windows and Linux, so there should be no worry on whether this will work on the testers device.
+It is good for data processing and so it seemed like a perfect fit. 
 
 ### CQRS and Proxies?
 Cqrs helps with the [single-responsibility principle](https://en.wikipedia.org/wiki/Single-responsibility_principle). Requests will usually have a focused task so there won't be a muddle of code for different purposes.
